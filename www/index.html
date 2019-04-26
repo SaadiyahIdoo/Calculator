@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href="js/jquery.mobile-1.4.5.css">
+			<script src="js/jquery.js"></script>
+			<script src="js/jquery.mobile-1.4.5.js"></script>
+			<script type="text/javascript">
+			<script src="cordova.js"></script>
+			
+			<script>
+			
+			
+				function calculate() {
+					try {
+						var value1 = parseInt(validate(document.getElementById("value1").value.trim()));
+						var value2 = parseInt(validate(document.getElementById("value2").value.trim()));
+						var operator = document.getElementById('operator').value;
+						document.getElementById("result").value = operate(value1, value2, operator);
+						document.getElementById("calculating").value = displayOp(value1, value2, operator);
+					} catch (err) {
+						alert("There was a problem: " + err.messaqge);
+					}
+				}
+
+				function operate(value1, value2, operator) {
+					if (operator == '+') {
+						return value1 + value2;
+					} else if (operator == '-') {
+						return value1 - value2;
+					} else if (operator == '*') {
+						return value1 * value2;
+					} else if (operator == '/') {
+						return value1 / value2;
+					}
+				}
+				
+				function validate(value) {
+					if (value == null || value == "") {
+						alert("Required Field");
+						return 0;
+					} else if (isNaN(value)) {
+						alert("Must be a Number Field");
+						return 0;
+					} else return value;
+				}
+				
+				function displayOp(value1, value2, operator){
+					if (operator == '+'){
+						return value1 + '+' + value2;
+					}else if (operator == '-'){
+						return value1 + '-' + value2;
+					}else if (operator == '*'){
+						return value1 + '*' + value2;
+					}else if (operator == '/'){
+						return value1 + '/' + value2;
+					}
+				}
+			</script>
+		</head>
+		
+		<body>
+			<div data-role="page" id="home">
+				<div data-role="header">
+					<h1>Simple Calculator</h1>
+					<div data-role="navbar">
+						<ul>
+							<li><a href="#home" data-icon="home">Home</a>
+							<li><a href="#calc" data-icon="grid">Calculator</a>
+							<li><a href="#help" data-icon="info">Help</a>
+					</div>
+				</div>
+				<div data-role="main" class="ui-content">
+					This is a jQuery mobile exercise which provides the user with a calculator for basic mathematical operations
+				</div>
+				<div data-role="footer">
+					<h1>Homework</h1>
+				</div>
+			</div>
+			
+			<div data-role="page" id="calc">
+				<div data-role="header">
+					<h1>Simple Calculator</h1>
+					<div data-role="navbar">
+						<ul>
+							<li><a href="#home" data-icon="home">Home</a>
+							<li><a href="#calc" data-icon="grid">Calculator</a>
+							<li><a href="#help" data-icon="info">Help</a>
+					</div>
+					
+				</div>
+				<div data-role="main" class="ui-content">
+					<input type="text" name="text-basic" id="value1" placeholder="Value 1">
+					<div class="ui-field-contain ui-hide-label">
+						<select name="select-native-7" id="operator" data-mini="true">
+							<option value="+" id="add">+</option>
+							<option value="-" id="sub">-</option>
+							<option value="*" id="mul">x</option>
+							<option value="/" id="div">/</option>
+						</select>
+					</div>
+					<input type="text" name="text-basic" id="value2" placeholder="Value 2">
+					<div data-demo-html="true">
+						<a href="#dispResult" style="text-decoration:none;">
+							<input type="submit" value="Calculate" onclick="calculate();">
+						</a>
+					</div>
+				</div>
+				<div data-role="footer">
+					<h1>Homework</h1>
+				</div>
+			</div>
+			
+			<div data-role="page" id="help">
+				<div data-role="header">
+					<h1>Simple Calculator</h1>
+					<div data-role="navbar">
+						<ul>
+							<li><a href="#home" data-icon="home">Home</a>
+							<li><a href="#calc" data-icon="grid">Calculator</a>
+							<li><a href="#help" data-icon="info">Help</a>
+					</div>
+					
+				</div>
+				<div data-role="main" class="ui-content">
+					This is the help section and provides basic information about how to use the calculator
+				</div>
+				<div data-demo-html="true">
+					<a href="#popup" style="text-decoration:none;">
+						<input type="submit" data-icon="info" value="More info">
+					</a>
+				</div>
+				<div data-role="footer">
+					<h1>Homework</h1>
+				</div>
+			</div>
+			
+			<div data-role="page" id="popup" data-dialog="true">
+				<div data-role="header" data-icon="delete">
+					<h1>More Info</h1>
+				</div>
+				<div data-role="main" class="ui-content">
+					You have requested more info about the App!
+				</div>
+				<div data-demo-html="true">
+					<a href="#help" style="text-decoration:none;">
+						<input type="submit" data-icon="back" value="Dismiss">
+					</a>
+				</div>
+				<br>
+			</div>
+			
+			<div data-role="page" id="dispResult">
+				<div data-role="header" data-icon="delete">
+					<h1>Results</h1>
+					<div data-role="navbar">
+						<ul>
+							<li><a href="#home" data-icon="home">Home</a>
+							<li><a href="#calc" data-icon="grid">Calculator</a>
+							<li><a href="#help" data-icon="info">Help</a>
+					</div>
+				</div>
+				<div data-role="main" class="ui-content">
+					Operation:<br>
+					<input type="text" class="txt" name="calculating" id="calculating" readonly/>
+					Result:<br>
+					<input type="text" class="txt" name="result" id="result" readonly/>
+				</div>
+				<div data-demo-html="true">
+					<a href="#calc" style="text-decoration:none;">
+						<input type="submit" data-icon="back" value="Back">
+					</a>
+				</div>
+			</div>
+		</body>
+	</html>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
